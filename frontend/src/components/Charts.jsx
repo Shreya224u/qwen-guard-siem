@@ -2,6 +2,23 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 
 const axis = { fill: '#8794aa', fontSize: 11 }
 const tooltipStyle = { background: '#11192a', border: '1px solid rgba(133,157,190,.2)', borderRadius: 8, color: '#e5eaf5' }
+const activitySeries = {
+  events: 'Logs · event time',
+  threats: 'Alerts · event time',
+  ingested_events: 'Logs · ingestion time',
+  ingested_threats: 'Alerts · ingestion time',
+}
+
+function ActivityTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null
+  return <div style={{ ...tooltipStyle, maxWidth: 220, padding: '9px 11px', boxShadow: '0 8px 24px #0006' }}>
+    <strong style={{ display: 'block', marginBottom: 6, fontSize: 12 }}>{label}</strong>
+    <div className="activity-tooltip-rows">{payload.map(item => <div className="activity-tooltip-row" key={item.dataKey}>
+      <i style={{ background: item.color }}/><span>{activitySeries[item.dataKey] || item.name}</span><strong>{Number(item.value) || 0}</strong>
+    </div>)}</div>
+  </div>
+}
+
 const severityMeaning = {
   Critical: 'Urgent threat indicators; investigate immediately.',
   High: 'High risk indicators; prioritize investigation.',
@@ -22,7 +39,7 @@ function SeverityTooltip({ active, payload }) {
 
 export function EventsLineChart({ data = [] }) {
   if (!data.some(row => row.events || row.threats || row.ingested_events || row.ingested_threats)) return <div className="chart-empty">No log or alert records exist in this time range.</div>
-  return <div className="events-chart"><ResponsiveContainer><LineChart data={data} margin={{ top: 8, right: 8, left: -14, bottom: 0 }}><CartesianGrid stroke="rgba(133,157,190,.12)" strokeDasharray="3 3"/><XAxis dataKey="time" tick={axis} axisLine={false} tickLine={false} minTickGap={18}/><YAxis tick={axis} axisLine={false} tickLine={false} width={34} allowDecimals={false}/><Tooltip contentStyle={tooltipStyle}/><Line type="monotone" dataKey="events" name="Logs (event time)" stroke="#5795ff" strokeWidth={2.5} dot={false} activeDot={{ r: 4 }}/><Line type="monotone" dataKey="threats" name="Alerts (event time)" stroke="#ff5f72" strokeWidth={2} dot={false} activeDot={{ r: 4 }}/><Line type="monotone" dataKey="ingested_events" name="Logs (ingestion time; source timestamp missing)" stroke="#ffc857" strokeWidth={2} strokeDasharray="5 4" dot={false} activeDot={{ r: 4 }}/><Line type="monotone" dataKey="ingested_threats" name="Alerts (ingestion time; source timestamp missing)" stroke="#bc8cff" strokeWidth={2} strokeDasharray="5 4" dot={false} activeDot={{ r: 4 }}/></LineChart></ResponsiveContainer></div>
+  return <div className="events-chart"><ResponsiveContainer><LineChart data={data} margin={{ top: 8, right: 8, left: -14, bottom: 0 }}><CartesianGrid stroke="rgba(133,157,190,.12)" strokeDasharray="3 3"/><XAxis dataKey="time" tick={axis} axisLine={false} tickLine={false} minTickGap={18}/><YAxis tick={axis} axisLine={false} tickLine={false} width={34} allowDecimals={false}/><Tooltip content={<ActivityTooltip/>} wrapperStyle={{ zIndex: 10, pointerEvents: 'none' }}/><Line type="monotone" dataKey="events" name={activitySeries.events} stroke="#5795ff" strokeWidth={2.5} dot={false} activeDot={{ r: 4 }}/><Line type="monotone" dataKey="threats" name={activitySeries.threats} stroke="#ff5f72" strokeWidth={2} dot={false} activeDot={{ r: 4 }}/><Line type="monotone" dataKey="ingested_events" name={activitySeries.ingested_events} stroke="#ffc857" strokeWidth={2} strokeDasharray="5 4" dot={false} activeDot={{ r: 4 }}/><Line type="monotone" dataKey="ingested_threats" name={activitySeries.ingested_threats} stroke="#bc8cff" strokeWidth={2} strokeDasharray="5 4" dot={false} activeDot={{ r: 4 }}/></LineChart></ResponsiveContainer></div>
 }
 
 export function SeverityDonut({ data = [] }) {

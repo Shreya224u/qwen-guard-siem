@@ -292,6 +292,14 @@ export default function App() {
     setPage('alerts')
     dismissNotification(notificationId)
   }
+  const openSearchResult = record => {
+    if (record.recordType === 'alert') {
+      setFocusAlertId(record.id)
+      setPage('alerts')
+    } else {
+      setPage('overview')
+    }
+  }
   const handleWorkspaceWheel = event => {
     if (!event.target.closest('.sidebar nav')) return
     if (pageTurnLock.current) {
@@ -320,7 +328,7 @@ export default function App() {
     <CyberParticleBackground/>
     <Sidebar page={page === 'investigation' ? 'alerts' : page} setPage={nextPage => { if (nextPage !== 'admin' || userRole === 'admin') setPage(nextPage) }} collapsed={collapsed} setCollapsed={setCollapsed} alertCount={unresolvedAlertCount} isAdmin={userRole === 'admin'}/>
     <div className="main-shell">
-      <Topbar theme={theme} setTheme={setTheme} query={query} setQuery={setQuery} onLogout={logout} onToggleSidebar={() => setCollapsed(v => !v)} user={user}/>
+      <Topbar theme={theme} setTheme={setTheme} query={query} setQuery={setQuery} onLogout={logout} onToggleSidebar={() => setCollapsed(v => !v)} user={user} isAdmin={userRole === 'admin'} records={events} onNavigate={setPage} onSelectSearchResult={openSearchResult}/>
       <main className="main-content" ref={mainContentRef}>
         <div className="breadcrumbs"><span>SIEM Workspace</span><ChevronRight size={13}/><strong>{titles[page]}</strong></div>
         {loading && !events.length && <div className="notice info">Loading records from the SIEM API…</div>}

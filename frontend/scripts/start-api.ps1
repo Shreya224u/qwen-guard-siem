@@ -4,6 +4,29 @@ $frontendRoot = Split-Path -Parent $PSScriptRoot
 $backendRoot = Join-Path (Split-Path -Parent $frontendRoot) 'backend'
 $python = Join-Path $backendRoot 'venv\Scripts\python.exe'
 $databasePath = Join-Path $frontendRoot 'siem-dev.sqlite3'
+$apiUrl = 'http://127.0.0.1:8000'
+
+try {
+  $response = Invoke-WebRequest -Uri "$apiUrl/openapi.json" -UseBasicParsing -TimeoutSec 2
+  $document = $response.Content | ConvertFrom-Json
+  if ($response.StatusCode -eq 200 -and $document.info.title -eq 'Next-Gen SIEM API') {
+    Write-Output "SIEM API is already running: $apiUrl"
+    exit 0
+  }
+}
+catch { }
+
+$netstat = Join-Path $env:SystemRoot 'System32\netstat.exe'
+$apiListener = $null
+foreach ($line in (& $netstat -ano -p tcp)) {
+  if ($line -match '^\s*TCP\s+\S+:8000\s+\S+\s+LISTENING\s+(\d+)\s*$') {
+    $apiListener = [int]$Matches[1]
+    break
+  }
+}
+if ($apiListener) {
+  throw "Port 8000 is already occupied by process $apiListener. Stop that process or use the existing SIEM API; do not start another Uvicorn server."
+}
 
 if (-not (Test-Path -LiteralPath $python)) {
   throw "Backend Python environment not found at $python"
