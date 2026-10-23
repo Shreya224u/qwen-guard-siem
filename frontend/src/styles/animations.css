@@ -1,0 +1,159 @@
+
+/* src/styles/animations.css */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatWindow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.55;
+    box-shadow: 0 0 8px rgba(54, 224, 192, 0.15);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 18px rgba(54, 224, 192, 0.4);
+  }
+}
+
+@keyframes scanLine {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes moveParticle {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(20px, -30px, 0);
+  }
+  100% {
+    transform: translate3d(-10px, -60px, 0);
+  }
+}
+
+@keyframes dataFlow {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 40px;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.45s ease both;
+}
+
+.float-window {
+  animation: floatWindow 5s ease-in-out infinite;
+}
+
+.glow-pulse {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.animated-grid {
+  background-image:
+    linear-gradient(
+      rgba(95, 145, 180, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(95, 145, 180, 0.06) 1px,
+      transparent 1px
+    );
+  background-size: 40px 40px;
+}
+
+.digital-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.digital-scan::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity: 0.5;
+  pointer-events: none;
+  animation: scanLine 8s linear infinite;
+}
+
+.particle-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.5;
+  animation: moveParticle 8s ease-in-out infinite alternate;
+}
+
+.connection-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  transform-origin: left center;
+  opacity: 0.5;
+}
+
+.hover-lift {
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  border-color: rgba(54, 224, 192, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

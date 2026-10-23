@@ -1,5 +1,38 @@
-node_modules/
-dist/
+# Secrets and local configuration
 .env
 .env.*
 !.env.example
+**/.env
+**/.env.*
+!**/.env.example
+!backend/.env.example
+!frontend/.env.example
+
+# Python environments and generated files
+venv/
+.venv/
+.venv*/
+**/venv/
+**/.venv/
+**/__pycache__/
+*.py[cod]
+
+# Frontend dependencies and builds
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Editor-specific workspace settings
+.vscode/
+
+# Local databases, logs, and backups
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+*.log
+*-backup-*/
+*.backup-*/
+*.zip

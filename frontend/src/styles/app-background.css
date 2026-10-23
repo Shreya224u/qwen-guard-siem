@@ -1,0 +1,53 @@
+.app-shell {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(19, 142, 167, 0.1), transparent 39%),
+    radial-gradient(ellipse at 83% 74%, rgba(17, 122, 111, 0.08), transparent 42%),
+    linear-gradient(125deg, #07111b 0%, #061018 55%, #07131c 100%);
+}
+
+.cyber-particle-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.app-shell > .main-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell > .sidebar {
+  z-index: 5;
+}
+
+.login-screen {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(19, 142, 167, 0.12), transparent 39%),
+    radial-gradient(ellipse at 82% 72%, rgba(17, 122, 111, 0.1), transparent 42%),
+    linear-gradient(125deg, #07111b 0%, #061018 55%, #07131c 100%);
+}
+
+.login-screen > .cyber-particle-background {
+  position: fixed;
+}
+
+.login-screen > :not(.cyber-particle-background) {
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme='light'] .app-shell,
+[data-theme='light'] .login-screen {
+  background:
+    radial-gradient(ellipse at 18% 28%, rgba(50, 111, 224, 0.065), transparent 39%),
+    radial-gradient(ellipse at 82% 74%, rgba(0, 143, 122, 0.05), transparent 42%),
+    #f4f7fb;
+}

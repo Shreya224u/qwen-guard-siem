@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 736" fill="none">
+  <defs>
+    <linearGradient id="shell" x1="225" y1="72" x2="497" y2="346" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFD"/><stop offset=".48" stop-color="#E5E9F0"/><stop offset="1" stop-color="#AEB5C2"/>
+    </linearGradient>
+    <linearGradient id="side" x1="178" y1="165" x2="217" y2="250" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7EAF0"/><stop offset="1" stop-color="#AEB5C1"/>
+    </linearGradient>
+    <linearGradient id="body" x1="272" y1="331" x2="477" y2="605" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F1F4F8"/><stop offset=".55" stop-color="#DDE2EA"/><stop offset="1" stop-color="#AEB5C0"/>
+    </linearGradient>
+    <linearGradient id="arm" x1="184" y1="360" x2="248" y2="552" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D9DEE7"/><stop offset=".5" stop-color="#EEF1F5"/><stop offset="1" stop-color="#B5BBC6"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="259" y1="125" x2="482" y2="301" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C1F2A"/><stop offset=".52" stop-color="#102E3A"/><stop offset="1" stop-color="#071923"/>
+    </linearGradient>
+    <radialGradient id="screenGlow" cx="0" cy="0" r="1" gradientTransform="matrix(125 0 0 93 368 212)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#164252" stop-opacity=".7"/><stop offset="1" stop-color="#102E3A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cyan" x1="298" y1="195" x2="438" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#72F5FF"/><stop offset="1" stop-color="#20CFE1"/>
+    </linearGradient>
+    <filter id="shadow" x="287" y="636" width="162" height="35" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="368" cy="653" fill="#5F6B7C" fill-opacity=".22" filter="url(#shadow)" rx="62" ry="7"/>
+
+  <!-- Soft rounded arms -->
+  <path d="M231 343c-26 8-45 30-55 63l-27 103c-8 31 4 57 29 65 27 8 47-8 57-35l39-107-43-89Z" fill="url(#arm)"/>
+  <path d="M505 343c26 8 45 30 55 63l27 103c8 31-4 57-29 65-27 8-47-8-57-35l-39-107 43-89Z" fill="url(#arm)"/>
+
+  <!-- Torso -->
+  <path d="M268 328c22-17 57-25 100-25s78 8 100 25c26 20 43 65 42 112-2 91-53 154-142 161-89-7-140-70-142-161-1-47 16-92 42-112Z" fill="url(#body)"/>
+  <path d="M257 397c10-37 24-57 46-68 19-9 41-13 65-13s46 4 65 13c22 11 36 31 46 68 9 34 11 60 2 78-9 17-24 23-48 28l-2 15c-37 11-91 11-128 0l-2-15c-24-5-39-11-48-28-9-18-7-44 4-78Z" fill="#F1F4F8" fill-opacity=".55" stroke="#CDD2DB" stroke-width="5"/>
+  <path d="m244 464 61 14v18c35 10 91 10 126 0v-18l61-14" stroke="#AEB5C0" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/>
+  <path d="M274 378c-14 13-21 35-23 64-1 13 5 18 12 6l19-45c7-16 6-27-1-29-2-1-4 0-7 4Z" fill="#FFF" fill-opacity=".55"/>
+
+  <!-- Neck and head side pieces -->
+  <path d="M316 292h104v36c0 20-16 36-36 36h-32c-20 0-36-16-36-36v-36Z" fill="url(#shell)"/>
+  <rect x="173" y="161" width="64" height="90" rx="31" fill="url(#side)"/>
+  <rect x="499" y="161" width="64" height="90" rx="31" fill="url(#side)"/>
+  <path d="M309 91c0-18 15-33 33-33h52c18 0 33 15 33 33v15H309V91Z" fill="url(#shell)"/>
+
+  <!-- Main head shell -->
+  <path d="M201 130c0-44 35-78 79-78h176c44 0 79 34 79 78v139c0 52-31 86-81 99-56 15-116 15-172 0-50-13-81-47-81-99V130Z" fill="url(#shell)"/>
+  <path d="M222 148c0-33 27-59 60-59h172c33 0 60 26 60 59v110c0 35-22 57-57 67-58 17-120 17-178 0-35-10-57-32-57-67V148Z" fill="url(#screen)"/>
+  <path d="M222 148c0-33 27-59 60-59h172c33 0 60 26 60 59v110c0 35-22 57-57 67-58 17-120 17-178 0-35-10-57-32-57-67V148Z" fill="url(#screenGlow)"/>
+
+  <!-- Friendly face -->
+  <path d="M276 211c0-13 10-23 23-23h0c13 0 23 10 23 23v6c0 2-2 4-4 4h-38c-2 0-4-2-4-4v-6Z" fill="url(#cyan)"/>
+  <path d="M414 211c0-13 10-23 23-23h0c13 0 23 10 23 23v6c0 2-2 4-4 4h-38c-2 0-4-2-4-4v-6Z" fill="url(#cyan)"/>
+  <path d="M350 245h36c0 12-8 21-18 21s-18-9-18-21Z" fill="url(#cyan)"/>
+
+  <!-- Shell highlights -->
+  <path d="M226 130c8-20 23-33 42-39" stroke="#FFF" stroke-linecap="round" stroke-opacity=".78" stroke-width="10"/>
+  <path d="M251 367c-18 20-28 45-31 76" stroke="#FFF" stroke-linecap="round" stroke-opacity=".5" stroke-width="16"/>
+</svg>

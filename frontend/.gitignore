@@ -1,0 +1,7 @@
+node_modules/
+dist/
+siem-dev.sqlite3
+siem-dev.sqlite3-*
+.env
+.env.*
+!.env.example
